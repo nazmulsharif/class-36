@@ -23,3 +23,4 @@ Route::get('/',[studentController::class,'index'])->name('student.home');
 Route::get('/create',[studentController::class,'create'])->name('student.create');
 
 Route::post('/store',[studentController::class,'store'])->name('student.store');
+Route::get('/delete/{id}',[studentController::class,'destroy'])->name('student.delete');

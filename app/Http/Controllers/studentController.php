@@ -37,8 +37,20 @@ class studentController extends Controller
      */
     public function store(Request $request)
     {
-        
-        echo $request->roll;
+        $request->validate([
+            'name'=>'required',
+            'roll'=>'required',
+            'address'=>'required'
+
+        ]);
+        $student = new Student();
+        $student->name = $request->name;
+        $student->roll = $request->roll;
+        $student->address = $request->address;
+        $student->save();
+        $message = "data is inserted successfully";
+        return view('student.create', ['message', $message]);
+       
     }
 
     /**
@@ -83,6 +95,8 @@ class studentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $student = Student::find($id);
+        $student->delete();
+        return back();
     }
 }
